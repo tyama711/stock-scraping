@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "load-stock-price-into-bigquery"
+version = "0.1.7"
+description = ""
+authors = ["tyama711 <tyama711@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+numpy = "^1.22.2"
+pandas = "^1.4.0"
+pandas-datareader = "^0.10.0"
+google-cloud-bigquery = "^2.32.0"
+
+[tool.poetry.dev-dependencies]
+yapf = "^0.32.0"
+toml = "^0.10.2"
+
+[tool.poetry.scripts]
+load-stock-price-into-bigquery = "load_stock_price_into_bigquery.main:main"
+
+[tool.yapf]
+based_on_style = "google"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
