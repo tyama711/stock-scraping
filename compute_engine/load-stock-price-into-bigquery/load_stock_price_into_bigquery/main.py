@@ -38,8 +38,10 @@ class StockPriceWriter(ABC):
 
 class BigQueryWriter(StockPriceWriter):
 
-    def __init__(self, project_id: str = None, table_id: str,
-                 temp_table_id: str) -> None:
+    def __init__(self,
+                 table_id: str,
+                 temp_table_id: str,
+                 project_id: str = None) -> None:
         self.project_id = project_id
         self.table_id = table_id
         self.temp_table_id = temp_table_id
