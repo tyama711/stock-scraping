@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-sudo apt-get -qy update
-sudo apt-get -qy install python3-pip
+sudo apt-get -qq -y update
+sudo apt-get -qq -y install python3-pip
 python3 -m pip install --quiet --user load-stock-price-into-bigquery
 # ${HOME}/.local/bin/load-stock-price-into-bigquery
 
