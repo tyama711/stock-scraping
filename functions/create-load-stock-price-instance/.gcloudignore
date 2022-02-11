@@ -1,0 +1,8 @@
+# ignore
+*
+
+# upload list
+!.
+!requirements.txt
+!main.py
+!sp500_symbols.py

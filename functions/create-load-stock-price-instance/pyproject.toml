@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "create-load-stock-price-instance"
+version = "0.1.0"
+description = ""
+authors = ["tyama711 <tyama711@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+google-cloud-compute = "^1.0.0"
+google-cloud-pubsub = "^2.9.0"
+functions-framework = "^3.0.0"
+requests = "^2.27.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+yapf = "^0.32.0"
+toml = "^0.10.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

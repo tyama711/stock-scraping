@@ -11,3 +11,4 @@ htmlcov
 .python-version
 .ipynb_checkpoints
 dist/
+.secret/
