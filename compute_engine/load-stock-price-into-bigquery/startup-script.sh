@@ -2,6 +2,7 @@
 sudo apt-get -qq -y update
 sudo apt-get -qq -y install python3-pip
 python3 -m pip install --quiet --user load-stock-price-into-bigquery
+echo ${HOME}
 ${HOME}/.local/bin/load-stock-price-into-bigquery
 
 # delete an instance itself
