@@ -53,7 +53,7 @@ def create_load_stock_price_instance(event: PubsubMessage,
     create_instance_from_template(
         project_id=project_id,
         zone="us-central1-a",
-        instance_name="load-stock-price",
+        instance_name=f"load-stock-price-{context.timestamp}",
         instance_template_url=
         f"global/instanceTemplates/load-stock-price-template"
     )
