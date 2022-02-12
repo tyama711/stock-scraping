@@ -3,6 +3,7 @@ import google.cloud.compute_v1 as compute_v1
 import requests
 from google.cloud.functions.context import Context
 from google.pubsub import PubsubMessage
+from dateutil.parser import isoparse
 
 
 def create_instance_from_template(
@@ -50,10 +51,12 @@ def create_load_stock_price_instance(event: PubsubMessage,
     resp.raise_for_status()
     project_id = resp.text
 
+    timestamp = isoparse(context.timestamp).strftime("%Y%m%d%H%M%S")
+
     create_instance_from_template(
         project_id=project_id,
         zone="us-central1-a",
-        instance_name=f"load-stock-price-{context.timestamp}",
+        instance_name=f"load-stock-price-{timestamp}",
         instance_template_url=
         f"global/instanceTemplates/load-stock-price-template"
     )
