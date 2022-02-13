@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import sys
 from abc import ABC, abstractmethod
 from dataclasses import asdict, dataclass
 from datetime import date, timedelta
@@ -9,7 +10,7 @@ from typing import List
 import numpy as np
 import pandas as pd
 import pandas_datareader as pdr
-from google.cloud.bigquery import Client
+from google.cloud.bigquery import Client, LoadJobConfig
 
 from .sp500_symbols import sp500_symbols
 
@@ -51,10 +52,20 @@ class BigQueryWriter(StockPriceWriter):
               end: str) -> None:
         self.client.delete_table(self.temp_table_id, not_found_ok=True)
 
+        job_config = LoadJobConfig()
+        job_config.max_bad_records = 10000
+
         job = self.client.load_table_from_json(
             [asdict(stock_price) for stock_price in stock_prices],
-            self.temp_table_id)
-        job.result()
+            self.temp_table_id,
+            job_config=job_config,
+        )
+
+        try:
+            job.result()
+        except Exception as e:
+            print(job.errors, file=sys.stderr)
+            raise e
 
         if self.project_id is not None:
             table_id = f"{self.project_id}.{self.table_id}"
@@ -81,7 +92,12 @@ class BigQueryWriter(StockPriceWriter):
             VALUES (S.date, S.symbol, S.adj_close, S.close, S.high, S.low, S.open, S.volume);
         """
         job = self.client.query(query)
-        job.result()
+
+        try:
+            job.result()
+        except Exception as e:
+            print(job.errors, file=sys.stderr)
+            raise e
 
         self.client.delete_table(self.temp_table_id)
 

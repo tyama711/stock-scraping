@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import google.cloud.compute_v1 as compute_v1
 import requests
+from dateutil.parser import isoparse
 from google.cloud.functions.context import Context
 from google.pubsub import PubsubMessage
-from dateutil.parser import isoparse
 
 
 def create_instance_from_template(
