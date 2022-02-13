@@ -66,6 +66,8 @@ class BigQueryWriter(StockPriceWriter):
         except Exception as e:
             print(job.errors, file=sys.stderr)
             raise e
+        else:
+            print(job.errors, file=sys.stderr)
 
         if self.project_id is not None:
             table_id = f"{self.project_id}.{self.table_id}"
@@ -98,6 +100,8 @@ class BigQueryWriter(StockPriceWriter):
         except Exception as e:
             print(job.errors, file=sys.stderr)
             raise e
+        else:
+            print(job.errors, file=sys.stderr)
 
         self.client.delete_table(self.temp_table_id)
 

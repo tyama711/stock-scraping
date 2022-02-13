@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "load-stock-price-into-bigquery"
-version = "0.1.8"
+version = "0.1.10"
 description = ""
 authors = ["tyama711 <tyama711@gmail.com>"]
 
