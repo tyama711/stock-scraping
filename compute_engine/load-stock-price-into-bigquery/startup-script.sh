@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -xe
+set -x
 
 sudo apt-get -qq -y update
 sudo apt-get -qq -y install python3-pip
